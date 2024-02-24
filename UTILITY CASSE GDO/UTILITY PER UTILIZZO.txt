@@ -1,0 +1,53 @@
+PICCOLA INTERFACCIA GESTIONALE
+http://localhost:8080/casseautomatiche/home
+
+*********MODELS ENDPOINTS ***********  // alcuni non posseggono update e delete
+
+GETALL(GET), SAVE(POST), UPDATE(PUT)
+http://localhost:8080/casseautomatiche/products/
+http://localhost:8080/casseautomatiche/barcodes/
+http://localhost:8080/casseautomatiche/prices/
+http://localhost:8080/casseautomatiche/sells/
+http://localhost:8080/casseautomatiche/departments/
+http://localhost:8080/casseautomatiche/stocks/
+http://localhost:8080/casseautomatiche/typeofmeasures/
+http://localhost:8080/casseautomatiche/receipts/
+
+GETBYID(GET) DELETEBYID(DELETE)
+http://localhost:8080/casseautomatiche/products/{id}
+http://localhost:8080/casseautomatiche/barcodes/{id}
+http://localhost:8080/casseautomatiche/prices/{id}
+http://localhost:8080/casseautomatiche/sells/{id}
+http://localhost:8080/casseautomatiche/departments/{id}
+http://localhost:8080/casseautomatiche/stocks/{id}
+http://localhost:8080/casseautomatiche/typeofmeasures/{id}
+http://localhost:8080/casseautomatiche/receipts/{id}
+
+
+SAVEALL(POST)
+http://localhost:8080/casseautomatiche/products/multisave/
+http://localhost:8080/casseautomatiche/sells/multisave/
+
+
+
+*********CASSE GDO ENDPOINTS ***********
+ACQUISTO(POST) -> body(List<Barcode>)
+http://localhost:8080/casseautomatiche/gdo/buy
+
+CALCOLA STOCK(GET)
+http://localhost:8080/casseautomatiche/gdo/stock
+
+CALCOLA INCASSO GIORNALIERO(GET)
+http://localhost:8080/casseautomatiche/gdo/daily-takings
+
+CALCOLA INCASSI DATA UNA DATA PER OGNI PRODOTTO(GET)
+http://localhost:8080/casseautomatiche/gdo/takings4product/bydate/{date}
+
+CALCOLA INCASSI DATA UNA DATA PER OGNI REPARTO(GET)
+http://localhost:8080/casseautomatiche/gdo/takings4department/bydate/{date}
+
+CALCOLA INCASSI DATO UN ANNO PER OGNI REPARTO(GET)
+http://localhost:8080/casseautomatiche/gdo/takings4department/byyear/{year}
+
+
+

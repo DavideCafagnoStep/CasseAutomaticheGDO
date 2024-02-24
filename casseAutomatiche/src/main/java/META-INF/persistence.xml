@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+	<persistence-unit name="casseAutomatiche" transaction-type="RESOURCE_LOCAL">
+		<class>it.step.casseAutomatiche.models.Barcode</class> 
+		<class>it.step.casseAutomatiche.models.Department</class>
+		<class>it.step.casseAutomatiche.models.Price</class>
+		<class>it.step.casseAutomatiche.models.Product</class>
+		<class>it.step.casseAutomatiche.models.Receipt</class>
+		<class>it.step.casseAutomatiche.models.Sell</class>
+		<class>it.step.casseAutomatiche.models.Stock</class>
+		<class>it.step.casseAutomatiche.models.TypeOfMeasure</class> 
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/casse_automatiche_DB"/>
+			<property name="javax.persistence.jdbc.user" value="postgres"/>
+			<property name="javax.persistence.jdbc.password" value="admin"/>
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+		</properties>
+	</persistence-unit>
+</persistence>
