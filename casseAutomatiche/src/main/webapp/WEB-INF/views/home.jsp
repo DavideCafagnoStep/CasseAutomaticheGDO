@@ -124,6 +124,115 @@ function tackingsByYearGroupByDepartment(){
 	    }).catch(err=>alert(err.message));
 }
 
+function renderReceipt(sells){
+    let tot = 0;
+    res =`<div class="mx-5 mt-4 p-5 border-1 border-primary shadow">
+        <div class="row p-1 mb-5 mt-5">
+            <div class="col text-center"><b>CASSE AUTOMATICHE GDO</b></div>
+            <div class="col text-center"><b>` + sells[0].date + `</b></div>
+        </div>
+        <div class="row p-1 mb-3 mt-3">
+            <div class="col text-center"><b>DESCRIPTION</b></div>
+            <div class="col text-center"><b>QUANTYTY</b></div>
+            <div class="col text-center"><b>DEPARTMENT</b></div>
+            <div class="col text-center"><b>PRICE</b></div>
+        </div>`;
+    for(s of sells){
+        tot+=s.price;
+    res +=`
+    <div class="row p-1">
+        <div class="col text-center">`+s.description+`</div>
+        <div class="col text-center">`+ s.quantity +`</div>
+        <div class="col text-center">`+s.department.description+`</div>
+        <div class="col text-center">`+s.price+`</div>
+    </div>
+    `;
+    }
+    res+=` 
+    <div class="row p-1 mb-3 mt-5">
+        <div class="col text-center"><b>TOTAL</b></div>
+        <div class="col text-center"><b>` + tot + `</b></div>
+    </div>`;
+    return res+"</div>";
+}
+
+
+function buySomeProducts(){
+
+    const barcodes = [
+        {
+            "id": 1,
+            "code": "12345",
+            "endValidity": "2024-12-31",
+            "startValidity": "2024-01-01",
+            "isValid": true,
+            "product": {
+                "id": 1
+            }
+        },
+        {
+            "id": 3,
+            "code": "12345-Bis",
+            "endValidity": "2025-12-31",
+            "startValidity": "2025-01-01",
+            "isValid": false,
+            "product": {
+                "id": 1
+            }
+        },
+        {
+            "id": 4,
+            "code": "12345-0",
+            "endValidity": "2024-12-31",
+            "startValidity": "2024-01-01",
+            "isValid": true,
+            "product": {
+                "id": 2
+            }
+        },
+        {
+            "id": 5,
+            "code": "12345-0bis",
+            "endValidity": "2024-12-31",
+            "startValidity": "2024-01-01",
+            "isValid": true,
+            "product": {
+                "id": 2
+            }
+        },
+        {
+            "id": 6,
+            "code": "12345-1",
+            "endValidity": "2024-12-31",
+            "startValidity": "2024-01-01",
+            "isValid": true,
+            "product": {
+                "id": 3
+            }
+        },
+        {
+            "id": 7,
+            "code": "12345-2",
+            "endValidity": "2024-12-31",
+            "startValidity": "2024-01-01",
+            "isValid": true,
+            "product": {
+                "id": 4
+            }
+        }];
+	    fetch("http://localhost:8080/casseautomatiche/gdo/buy/", {
+            method:"POST",
+            body:JSON.stringify(barcodes),
+            headers: {
+                "content-type":"application/json"
+            }
+        }).then(function(response) {
+	        return response.json();
+	      }).then((resp)=>{
+	        document.getElementById("result").innerHTML=renderReceipt(resp);
+	    }).catch(err=>alert(err.message));
+}
+
 </script>
 <div class="p-5 m-5 ">
 	<div class="row d-flex justify-content-center">
@@ -131,6 +240,7 @@ function tackingsByYearGroupByDepartment(){
 	</div>
 	
 	<div class="row d-flex justify-content-center">
+		<div class="col-12"><button onCLick="buySomeProducts()" class=" mx-4 my-1 btn btn-primary rounded px-4 py-2">GENERA UNO SCONTRINO</button><br></div>
 		<div class="col-12"><button onCLick="resultStock()" class=" mx-4 my-1 btn btn-primary rounded px-4 py-2">AGGIORNA_STOCK_FINE_GIORNATA</button><br></div>
 		<div class="col-12"><button onCLick="getDailyTackings()"  class=" mx-4 my-1 btn btn-primary rounded px-4 py-2"  >INCASSO_GIORNATA</button><br></div>
 		<div class="col-12 d-flex align-items-center">
