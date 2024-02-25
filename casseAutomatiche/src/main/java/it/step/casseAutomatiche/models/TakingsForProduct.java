@@ -9,14 +9,16 @@ public class TakingsForProduct implements Serializable {
 	
 	private String id;
 	private String description;
+	private Integer quantity;
 	private Float total;
 	private Date date;
 	public TakingsForProduct() {}
 	
-	public TakingsForProduct(String id, String description, Float total, Date date) {
+	public TakingsForProduct(String id, String description, Integer quantity, Float total, Date date) {
 		super();
 		this.id = id;
 		this.description = description;
+		this.quantity = quantity;
 		this.total = total;
 		this.date = date;
 	}
@@ -35,6 +37,15 @@ public class TakingsForProduct implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
 	}
 
 	public Float getTotal() {
@@ -55,9 +66,11 @@ public class TakingsForProduct implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Takings For Product [ID:" + id + ", PRODUCT:" + description + ", TOTAL: " + total + ", DATE: " + date
-				+ "]\n";
+		return "TakingsForProduct [id=" + id + ", description=" + description + ", quantity=" + quantity + ", total="
+				+ total + ", date=" + date + "]";
 	}
+
+
 	
 	
 	

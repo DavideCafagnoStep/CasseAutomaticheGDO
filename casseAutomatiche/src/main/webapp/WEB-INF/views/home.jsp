@@ -53,11 +53,35 @@ function getDailyTackings(){
 
 
 
-function renderProductOrDepartmentTaking(list, label){
+function renderProductTaking(list){
     res =`<div class=" mt-4 p-5 border-1 border-primary shadow">
     <div class="row p-1 mb-3">
         <div class="col text-center"><b>ID</b></div>
-        <div class="col text-center"><b>` + label + `</b></div>
+        <div class="col text-center"><b>PRODUCT</b></div>
+        <div class="col text-center"><b>QUANTITY</b></div>
+        <div class="col text-center"><b>TOTAL</b></div>
+        <div class="col text-center"><b>DATE</b></div>
+    </div>
+    `;
+for(p of list){
+res +=`
+<div class="row p-1">
+    <div class="col text-center">`+ p.id +`</div>
+    <div class="col text-center">`+p.description+`</div>
+    <div class="col text-center">`+p.quantity+`</div>
+    <div class="col text-center">`+p.total+`</div>
+    <div class="col text-center">`+p.date+`</div>
+</div>
+`;
+}
+return res+"</div>";
+}
+
+function renderDepartmentTaking(list){
+    res =`<div class=" mt-4 p-5 border-1 border-primary shadow">
+    <div class="row p-1 mb-3">
+        <div class="col text-center"><b>ID</b></div>
+        <div class="col text-center"><b>DEPARTMENT</b></div>
         <div class="col text-center"><b>TOTAL</b></div>
         <div class="col text-center"><b>DATE</b></div>
     </div>
@@ -102,7 +126,7 @@ function tackingsByDateGroupByProduct(){
     fetch("http://localhost:8080/casseautomatiche/gdo/takings4product/bydate/"+date).then(function(response) {
         return response.json();
       }).then((resp)=>{
-        document.getElementById("result").innerHTML=renderProductOrDepartmentTaking(resp,"PRODUCT");
+        document.getElementById("result").innerHTML=renderProductTaking(resp);
     }).catch(err=>alert(err.message));
 }
 
@@ -111,7 +135,7 @@ function tackingsByDateGroupByDepartment(){
     fetch("http://localhost:8080/casseautomatiche/gdo/takings4department/bydate/"+date).then(function(response) {
         return response.json();
       }).then((resp)=>{
-        document.getElementById("result").innerHTML=renderProductOrDepartmentTaking(resp,"DEPARTMENT");
+        document.getElementById("result").innerHTML=renderDepartmentTaking(resp);
     }).catch(err=>alert(err.message ));
 }
 

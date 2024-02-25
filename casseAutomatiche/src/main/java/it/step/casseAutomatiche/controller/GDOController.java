@@ -222,8 +222,9 @@ public class GDOController {
 			while(rs.next()) {
 				String id = rs.getInt("pro_id") + "";
 				String product =rs.getString("product");
+				Integer quantity = rs.getInt("quantity");
 				Float total = rs.getFloat("total") ;
-				TakingsForProduct taking = new TakingsForProduct(id, product, total, date);
+				TakingsForProduct taking = new TakingsForProduct(id, product, quantity, total, date);
 				takings.add(taking);
 			}
 			
